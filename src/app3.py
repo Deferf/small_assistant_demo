@@ -87,6 +87,7 @@ def chat():
     # Print messages if response is textual, otherwise print the status
     if run.status == 'completed':
       messages = client.beta.threads.messages.list(thread_id=thread.id)
+      last_message = 
       return jsonify({'message': messages})
     else:
       return jsonify({'message': run.status})

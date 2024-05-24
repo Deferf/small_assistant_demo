@@ -99,7 +99,7 @@ def chat():
             if run.status == 'completed':
                 messages = list(client.beta.threads.messages.list(thread_id=thread.id))
                 response_message = messages[0].content[0].text.value
-                return jsonify({'message': f"called: {name} with arguments {arguments}\n" + response_message})
+                return jsonify({'message': f"called: {name} with arguments {arguments} <br>" + response_message})
             else:
                 return jsonify({'error': 'Failed to get a valid response'}), 500
  
