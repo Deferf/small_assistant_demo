@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat with OpenAI Assistant</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Chat with OpenAI Assistant</h1>
+    <div id="chatbox">
+        <div id="conversation"></div>
+        <input type="text" id="message" placeholder="Type your message here...">
+        <button id="send">Send</button>
+    </div>
+    <script>
+        $(document).ready(function(){
+            $('#send').on('click', function(){
+                const userMessage = $('#message').val();
+                $.ajax({
+                    type: 'POST',
+                    url: '/chat',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ message: userMessage }),
+                    success: function(response){
+                        $('#conversation').html(response.conversation.replace(/\n/g, '<br>'));
+                        $('#message').val('');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
